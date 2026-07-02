@@ -90,11 +90,25 @@ lines — *not* the file itself):
    the [file page](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/blob/main/ios-scriptable/prayer-times.js)).
 3. In Scriptable: **+** new script → name it **Prayer Times** → paste → **▶︎ Run** to preview.
 
-**Then, for both methods** — add a Scriptable widget to the home screen → **Edit Widget**
-→ Script = **Prayer Times**, **Parameter** = a city (e.g. `Glasgow`; blank = London).
+#### 📌 Then (both methods) — put it on your home screen
 
-Small size shows all five compactly; medium/large add glyphs + a `Next · …` tag.
-More: [`ios-scriptable/README.md`](ios-scriptable/README.md).
+Having the **Prayer Times** script in Scriptable is not enough on its own — you still
+have to place a Scriptable **widget** and point it at that script:
+
+1. **Long‑press an empty spot** on the home screen until the icons jiggle.
+2. Tap the **➕** in the top‑left corner.
+3. Search for and select **Scriptable**.
+4. Swipe to choose a size (**Small / Medium / Large**) → tap **Add Widget**.
+5. Tap **Done**, then **tap the new (blank) Scriptable widget** to open its settings
+   (or long‑press it → **Edit Widget**).
+6. **Script** → choose **Prayer Times**.
+7. **Parameter** → type a city: `London`, `Cardiff`, `Glasgow`, `Manchester`, or
+   `Newcastle` (leave blank for **London**).
+8. Tap anywhere outside to finish — the times appear.
+
+> Repeat with a different **Parameter** to show several cities side by side.
+> Small = all five compact; Medium / Large = glyphs + a `Next · …` tag.
+> More: [`ios-scriptable/README.md`](ios-scriptable/README.md).
 
 ### 🟦 Homey Pro
 
