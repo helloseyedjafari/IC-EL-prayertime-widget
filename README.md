@@ -138,7 +138,8 @@ homey app install               # builds + installs onto your Homey Pro
 ```
 
 Then on your Homey **dashboard**: add a widget → **Prayer Times** → open its settings
-→ pick a **City**.
+→ pick a **City** and a **Size** (Regular / Large / Extra large — the larger sizes grow
+the widget vertically for easier reading).
 
 > **Daily auto‑update without touching the screen.** The app backend refreshes on its
 > own (hourly + a precise 00:05 London rollover) and *pushes* new times to the widget,

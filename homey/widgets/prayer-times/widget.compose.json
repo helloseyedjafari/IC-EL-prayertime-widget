@@ -1,6 +1,6 @@
 {
   "name": { "en": "Prayer Times" },
-  "height": 240,
+  "height": 260,
   "transparent": false,
   "settings": [
     {
@@ -14,6 +14,17 @@
         { "id": "Glasgow", "title": { "en": "Glasgow" } },
         { "id": "Manchester", "title": { "en": "Manchester" } },
         { "id": "Newcastle", "title": { "en": "Newcastle" } }
+      ]
+    },
+    {
+      "id": "size",
+      "type": "dropdown",
+      "title": { "en": "Size" },
+      "value": "regular",
+      "values": [
+        { "id": "regular", "title": { "en": "Regular" } },
+        { "id": "large", "title": { "en": "Large" } },
+        { "id": "xlarge", "title": { "en": "Extra large" } }
       ]
     }
   ],
