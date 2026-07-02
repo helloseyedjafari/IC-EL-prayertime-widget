@@ -4,4 +4,9 @@
     <string name="widget_description">Today\'s prayer times for a UK city.</string>
     <string name="config_title">Choose a city</string>
     <string name="unavailable">Unavailable</string>
+    <string name="main_subtitle">Dawn · Sunrise · Noon · Maghrib · Midnight — for a UK city. Display only, no alarms.</string>
+    <string name="add_widget">＋  Add widget to Home screen</string>
+    <string name="add_widget_manual">Add it from your Home screen</string>
+    <string name="manual_instructions">Prefer to place it yourself? Long‑press an empty spot on your Home screen → Widgets → find Prayer Times → drag it out. Resize it anywhere from 2×2 up to a large card. Long‑press → Reconfigure to change the city.</string>
+    <string name="pin_hint">Tap the button and confirm — Android drops the widget on your Home screen. Then long‑press it → Reconfigure to pick a city (defaults to London).</string>
 </resources>

@@ -5,26 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/widget_bg"
-    android:padding="10dp">
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingBottom="4dp">
-
-        <TextView
-            android:id="@+id/city"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="—"
-            android:textColor="@color/gold"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:letterSpacing="0.1" />
-
+    <LinearLayout style="@style/WidgetLineCompact" android:paddingBottom="3dp">
+        <TextView android:id="@+id/city" style="@style/CityColCompact" android:text="—" />
         <TextView
             android:id="@+id/stale"
             android:layout_width="wrap_content"
@@ -35,29 +22,29 @@
             android:visibility="gone" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_dawn" style="@style/PrayerRowCompact">
-        <TextView style="@style/RowNameCompact" android:text="Dawn" />
-        <TextView android:id="@+id/dawn_time" style="@style/RowTimeCompact" />
+    <LinearLayout android:id="@+id/row_dawn" style="@style/WidgetLineCompact">
+        <TextView style="@style/NameColCompact" android:text="Dawn" />
+        <TextView android:id="@+id/dawn_time" style="@style/TimeColCompact" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_sunrise" style="@style/PrayerRowCompact">
-        <TextView style="@style/RowNameCompact" android:text="Sunrise" />
-        <TextView android:id="@+id/sunrise_time" style="@style/RowTimeCompact" />
+    <LinearLayout android:id="@+id/row_sunrise" style="@style/WidgetLineCompact">
+        <TextView style="@style/NameColCompact" android:text="Sunrise" />
+        <TextView android:id="@+id/sunrise_time" style="@style/TimeColCompact" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_noon" style="@style/PrayerRowCompact">
-        <TextView style="@style/RowNameCompact" android:text="Noon" />
-        <TextView android:id="@+id/noon_time" style="@style/RowTimeCompact" />
+    <LinearLayout android:id="@+id/row_noon" style="@style/WidgetLineCompact">
+        <TextView style="@style/NameColCompact" android:text="Noon" />
+        <TextView android:id="@+id/noon_time" style="@style/TimeColCompact" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_maghrib" style="@style/PrayerRowCompact">
-        <TextView style="@style/RowNameCompact" android:text="Maghrib" />
-        <TextView android:id="@+id/maghrib_time" style="@style/RowTimeCompact" />
+    <LinearLayout android:id="@+id/row_maghrib" style="@style/WidgetLineCompact">
+        <TextView style="@style/NameColCompact" android:text="Maghrib" />
+        <TextView android:id="@+id/maghrib_time" style="@style/TimeColCompact" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_midnight" style="@style/PrayerRowCompact">
-        <TextView style="@style/RowNameCompact" android:text="Midnight" />
-        <TextView android:id="@+id/midnight_time" style="@style/RowTimeCompact" />
+    <LinearLayout android:id="@+id/row_midnight" style="@style/WidgetLineCompact">
+        <TextView style="@style/NameColCompact" android:text="Midnight" />
+        <TextView android:id="@+id/midnight_time" style="@style/TimeColCompact" />
     </LinearLayout>
 
     <TextView
@@ -65,8 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="3dp"
+        android:paddingTop="2dp"
         android:text=""
         android:textColor="@color/gold_dim"
-        android:textSize="10sp" />
+        android:textSize="9sp"
+        android:maxLines="1" />
 </LinearLayout>

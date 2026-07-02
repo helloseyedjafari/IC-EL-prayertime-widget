@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/night_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌙 Prayer Times"
+            android:textColor="@color/gold"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:letterSpacing="0.04" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="@string/main_subtitle"
+            android:textColor="@color/label_dim"
+            android:textSize="13sp" />
+
+        <FrameLayout
+            android:id="@+id/preview_container"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/button_gold"
+            android:text="@string/add_widget"
+            android:textColor="@color/night_top"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:letterSpacing="0.02"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp" />
+
+        <TextView
+            android:id="@+id/pin_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/pin_hint"
+            android:textColor="@color/label_dim"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="#22e8eef5" />
+
+        <TextView
+            android:id="@+id/manual_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/manual_instructions"
+            android:textColor="@color/label_dim"
+            android:textSize="12sp"
+            android:lineSpacingExtra="3dp" />
+    </LinearLayout>
+</ScrollView>

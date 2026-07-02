@@ -58,7 +58,8 @@ class PrayerWidgetProvider : AppWidgetProvider() {
             val options = mgr.getAppWidgetOptions(id)
             val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 220)
             val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 220)
-            val layout = if (minWidth < 170 || minHeight < 160) R.layout.widget_small else R.layout.widget_large
+            // 2x2 / 2x3 / 3x2 (~110-170dp) use the compact layout; 3x3+ uses the roomy one.
+            val layout = if (minWidth < 175 || minHeight < 175) R.layout.widget_small else R.layout.widget_large
 
             val data = runCatching { PrayerRepository.load(context, city) }.getOrNull()
             val views = RemoteViews(context.packageName, layout)
