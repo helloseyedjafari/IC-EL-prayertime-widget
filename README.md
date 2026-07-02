@@ -33,8 +33,8 @@ attaches ready‑to‑use files. Grab the newest with these permanent links:
 
 | Platform | Latest download |
 |----------|-----------------|
+| 🤖 **Android** — release APK ⭐ | [`PrayerTimes-release.apk`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-release.apk) |
 | 🤖 **Android** — debug APK | [`PrayerTimes-debug.apk`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk) |
-| 🤖 **Android** — release APK | _coming soon_ |
 | 🍏 **iOS** (Scriptable script) | [`prayer-times.scriptable.js`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/prayer-times.scriptable.js) |
 | 🟦 **Homey Pro** (app source zip) | [`PrayerTimes-homey-app.zip`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-homey-app.zip) |
 
@@ -51,27 +51,32 @@ attaches ready‑to‑use files. Grab the newest with these permanent links:
 
 **📥 Download the APK:**
 
-- **Debug** (available now) → [**PrayerTimes-debug.apk**](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk)
-- **Release** (signed) → _coming soon_ — for now use the debug build above.
+- ⭐ **Release** (signed, recommended) → [**PrayerTimes-release.apk**](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-release.apk)
+- **Debug** → [**PrayerTimes-debug.apk**](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk)
 
 **Install it (no Android Studio):**
 
 ```bash
-adb install PrayerTimes-debug.apk
+adb install PrayerTimes-release.apk
 ```
 
 Or copy the APK to your phone and tap it (allow *“install from this source”*).
 
-**From source:**
+**Then open the “Prayer Times” app** (it now has a home‑screen/app‑drawer icon) and tap
+**➕ Add widget to Home screen** — one tap places the widget for you. The app screen also
+shows a live preview and manual instructions.
+
+**Or add it manually / from source:**
 
 ```bash
 cd android
-./gradlew installDebug        # to a connected phone/emulator
+./gradlew installDebug        # build & install from source to a connected device
 ```
 
-Then long‑press the home screen → **Widgets** → **Prayer Times** → drop it → pick a
-city. The widget is **resizable** (compact vs. roomy layouts), refreshes every ~6 h
-via WorkManager, and updates on tap. Add several for different cities.
+Long‑press the home screen → **Widgets** → **Prayer Times** → drop it. The widget is
+**resizable from 2×2 up to a large card**, refreshes every ~6 h via WorkManager, and
+updates on tap. Long‑press → **Reconfigure** to change the city; add several for
+different cities.
 
 ### 🍏 iOS — Scriptable
 
