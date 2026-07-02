@@ -62,9 +62,9 @@ adb install PrayerTimes-release.apk
 
 Or copy the APK to your phone and tap it (allow *“install from this source”*).
 
-**Then open the “Prayer Times” app** (it now has a home‑screen/app‑drawer icon) and tap
-**➕ Add widget to Home screen** — one tap places the widget for you. The app screen also
-shows a live preview and manual instructions.
+**Then open the “Prayer Times” app** (it has its own home‑screen/app‑drawer icon). It
+shows **today’s times as a table** with a tappable **city switcher** at the top; the
+**➕ Add widget to Home screen** button and instructions sit at the bottom.
 
 **Or add it manually / from source:**
 

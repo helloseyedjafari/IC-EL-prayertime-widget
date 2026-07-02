@@ -30,6 +30,13 @@ object PrayerRepository {
     fun setCity(context: Context, appWidgetId: Int, city: String) =
         prefs(context).edit().putString("city_$appWidgetId", city).apply()
 
+    /** City shown in the standalone app screen (separate from per-widget cities). */
+    fun appCity(context: Context): String =
+        prefs(context).getString("app_city", "London") ?: "London"
+
+    fun setAppCity(context: Context, city: String) =
+        prefs(context).edit().putString("app_city", city).apply()
+
     fun removeWidget(context: Context, appWidgetId: Int) =
         prefs(context).edit().remove("city_$appWidgetId").apply()
 

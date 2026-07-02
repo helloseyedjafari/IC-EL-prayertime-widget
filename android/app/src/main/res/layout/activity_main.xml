@@ -9,41 +9,148 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="🌙 Prayer Times"
             android:textColor="@color/gold"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:letterSpacing="0.04" />
+
+        <!-- Tappable city selector -->
+        <LinearLayout
+            android:id="@+id/city_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/row_highlight"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textColor="@color/gold"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:letterSpacing="0.10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="▾"
+                android:textColor="@color/gold"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Prayer-times table -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:background="@drawable/widget_bg"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <LinearLayout android:id="@+id/row_dawn" style="@style/AppLine">
+                <TextView style="@style/AppGlyph" android:text="☀" />
+                <TextView style="@style/AppName" android:text="Dawn" />
+                <TextView android:id="@+id/dawn_time" style="@style/AppTime" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/row_sunrise" style="@style/AppLine">
+                <TextView style="@style/AppGlyph" android:text="◐" />
+                <TextView style="@style/AppName" android:text="Sunrise" />
+                <TextView android:id="@+id/sunrise_time" style="@style/AppTime" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/row_noon" style="@style/AppLine">
+                <TextView style="@style/AppGlyph" android:text="☉" />
+                <TextView style="@style/AppName" android:text="Noon" />
+                <TextView android:id="@+id/noon_time" style="@style/AppTime" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/row_maghrib" style="@style/AppLine">
+                <TextView style="@style/AppGlyph" android:text="☾" />
+                <TextView style="@style/AppName" android:text="Maghrib" />
+                <TextView android:id="@+id/maghrib_time" style="@style/AppTime" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/row_midnight" style="@style/AppLine">
+                <TextView style="@style/AppGlyph" android:text="☾" />
+                <TextView style="@style/AppName" android:text="Midnight" />
+                <TextView android:id="@+id/midnight_time" style="@style/AppTime" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/next_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/gold_dim"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/stale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="· showing last saved times ·"
+            android:textColor="@color/label_dim"
+            android:textSize="11sp"
+            android:visibility="gone" />
+
+        <!-- flexible spacer: pushes the widget section to the bottom of the screen -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="28dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="#22e8eef5" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:text="Add it to your Home screen"
+            android:textColor="@color/gold"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:gravity="center"
-            android:text="@string/main_subtitle"
-            android:textColor="@color/label_dim"
-            android:textSize="13sp" />
-
-        <FrameLayout
-            android:id="@+id/preview_container"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" />
+            android:paddingBottom="10dp" />
 
         <Button
             android:id="@+id/add_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
             android:background="@drawable/button_gold"
             android:text="@string/add_widget"
             android:textColor="@color/night_top"
@@ -63,17 +170,11 @@
             android:textColor="@color/label_dim"
             android:textSize="12sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            android:background="#22e8eef5" />
-
         <TextView
             android:id="@+id/manual_instructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
             android:gravity="center"
             android:text="@string/manual_instructions"
             android:textColor="@color/label_dim"
