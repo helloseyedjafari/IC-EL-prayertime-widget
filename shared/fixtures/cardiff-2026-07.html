@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+#wrapper{
+
+width:400px;
+margin:auto;
+}
+
+.dropbtn {
+  background-color: #ce992f;
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  height:30px;
+  width:120px;
+
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+
+}
+
+.dropdown {
+  background-color: #3498DB;
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+   height:30px;
+}
+
+.dropdown-content {
+
+ background-color: #ce992f;
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+    height:30px;
+  width:200px;
+}
+
+
+.dropdown-content option {
+  background-color: #e5d7c9;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+}
+#FormOptions{
+margin-left: auto;
+  margin-right: auto;
+   border: 5px solid white;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+#selectCityTitle{
+background-color: #e5d7c9;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+}
+#selectCityTitle:hover, #selectCityTitle:focus {
+background-color: #e5d7c9;
+}
+
+.show {display: block;}
+
+.myBlock {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 16px;
+  font-family: verdana;
+  color: #26668;
+  height: 860px;
+}
+.ContainerTable{
+   width:100%;
+}
+
+.theDate {
+  align: center;
+ background-color: #26668b;
+ color: white;
+font-weight: bold;
+}
+.theTitle {
+
+ font-weight: bold;
+
+font-size: 18px;
+}
+.theData {
+  text-align: center;
+  font-size: 16px;
+  font-family: verdana;
+}
+#DataTable {
+  background-color: #f1f1c1;
+  border: 7px solid ;
+  border-color: #f1f1c1;
+  border-collapse: collapse;
+  width:100%;
+
+}
+#TableTh, #TableThCal {
+  background-color: #007777;
+  color: white;
+ text-align: center;
+ font-size: 12px;
+  border: 7px solid ;
+  border-color: #007777;
+  border-collapse: collapse;
+}
+#TableThCal {
+
+}
+/*
+#TableWeek {
+    background-color: #007777;
+    color: white;
+    border: 7px solid ;
+    border-color: #007777;
+    border-collapse: collapse;
+    width: 60px;
+    text-align: left;
+    padding-left: 20px;
+}  */
+ #TableWeek {
+     width:60px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#TableTd {
+
+ text-align: center;
+}
+#TodayRow {
+  background-color: #ffaa00;
+ font-weight: bold;
+ text-align: center;
+
+}
+
+#OddRows, #EvenRows {
+  background-color: #f1f1c1;
+  font-weight: regular;
+  font-size: 14px;
+  font-weight: normal;
+  color:#2f3132;
+}
+#EvenRows {
+  background-color: #f9ffc1;
+  font-weight: regular;
+  font-size: 14px;
+  font-weight: normal;
+  color:#2f3132;
+}
+#OddRows:hover, #EvenRows:hover {    font-size: 14px;font-weight: bold;color:#c21605;}
+
+
+#OddRowsG { background-color: #f4bdaf;}
+#EvenRowsG { background-color: #fbd7c9;}
+
+#LunarDateTd1 { background-color: #afe6b8;  text-align: center; }
+#LunarDateTd1EvenRow { background-color: #bdefc6;  text-align: center; }
+#LunarDateTd2 { background-color: #b6f4af;  text-align: center; }
+#LunarDateTd2EvenRow { background-color: #d0fbc9;  text-align: center; }
+
+#JalaliDateTd1 { background-color: #a1d3e3; text-align: center; }
+#JalaliDateTd1EvenRow { background-color: #a7dae8; text-align: center; }
+#JalaliDateTd2 { background-color: #a1d3e3; text-align: center; }
+#JalaliDateTd2EvenRow { background-color: #a7e8e7; text-align: center; }
+
+
+#GregorianDateTd  {
+  background-color: #f8c9bb;
+  text-align: center;
+  font-weight: 600;
+}
+#GregorianDateTdEvenRow  {
+  background-color: #fad0c2 ;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+#DateTd {
+    text-align: left;
+}
+
+#MonthName {
+    text-align: center;
+    font-size: 20px;
+}
+#leftArrow {
+    width: 50px;
+    text-align: left;
+}
+#rightArrow {
+    width: 50px;
+    text-align: right;
+}
+#monthTable {
+    text-align: center;
+    width: 100%;
+}
+
+</style>
+
+</head>
+
+<body>
+ <div id="wrapper">
+<table id="ContainerTable" align="center" ><tr><td>
+
+
+<table class="FormOptions" width="100%" >  <tr><td>
+   <input type="button" value="Today" onclick = "goToday()" class="dropbtn" />  </td>
+
+   <td>
+
+<select id="myCities"  onClick = "Send()" class="dropdown-content">
+   <option value="blank">Select city...</option>
+    <option value="London" >London</option>
+    <option value="Cardiff" >Cardiff</option>
+    <option value="Glasgow" >Glasgow</option>
+    <option value="Manchester">Manchester</option>
+    <option value="Newcastle" >Newcastle</option>
+</select>
+
+ </td>
+ </tr></table>
+  </td></tr>
+ <!-------------------------------------------------------------
+
+
+  <table class="FormOptions" >  <tr><td>
+<select id="myCities" onclick = "Send()" class="dropdown-content">
+    <option value="blank">Select another city...</option>
+    <option value="London" >London</option>
+    <option value="Cardiff" >Cardiff</option>
+    <option value="Glasgow" >Glasgow</option>
+    <option value="Manchester">Manchester</option>
+    <option value="Newcastle" >Newcastle</option>
+</select>
+ <input type="button" value="Today" onclick = "goToday()" class="dropbtn" />    </td></tr></table>
+ -------------------------------------------------------------------->
+
+<script type="text/javascript">
+
+
+ function Send() {
+    var myUrl=window.location.href.split("?");
+
+    const queryString1 = window.location.search;
+    const urlParams1 = new URLSearchParams(queryString1);
+    var myMonth = urlParams1.get('month');
+
+   var myBaseUrl= myUrl[0] + "?city=" ;
+
+  var tech = document.getElementById("myCities").value;
+
+    if (tech != "blank" && tech != "" ){
+        var finalUrl=myBaseUrl + encodeURIComponent(tech) + "&month=" + myMonth;
+        window.open( finalUrl,'_self');
+    }
+};
+
+function goToday() {
+    var myUrl=window.location.href.split("?");
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    var myCity = urlParams.get('city');
+    if (myCity=="") {myCity="London"};
+
+     var m = new Date();
+     var myMonth = m.getMonth()+1;
+
+   var myBaseUrl= myUrl[0] + "?city=" ;
+
+   var finalUrl=myBaseUrl + myCity + "&month=" + myMonth;
+   window.open( finalUrl,'_self');
+
+};
+</script>
+
+<tr><td align="center"><h4>Prayer Timetable (Cardiff-UK) </h4></td></tr> <tr><td><table id="monthTable"><tr><td id="leftArrow" ><a href="/wp-content/icel/praying_timetable/prayer_times_en.php?year=2026&city=Cardiff&month=6"><img src="https://ic-el.uk/wp-content/uploads/2021/02/arrow_left.png" alt="June" title="Go to June" width="50" height="42"></a></td><td><div id="MonthName"> July 2026 </div></td><td  id="rightArrow"><a href="/wp-content/icel/praying_timetable/prayer_times_en.php?year=2026&city=Cardiff&month=8"><img src="https://ic-el.uk/wp-content/uploads/2021/02/arrow_right.png" alt="August" title="Go to August" width="50" height="42"></a></td></tr></table></td></tr><tr><td><table ID="DataTable"><th ID="TableTh"></th><th ID="TableThCal">Day</th><th ID="TableTh"> Dawn</th><th ID="TableTh"> Sunrise</th><th ID="TableTh"> Noon </th><th ID="TableTh"> Maghrib</th><th ID="TableTh"> Midnight </th></tr><tr ID="OddRows"><td id="TableWeek">Wed</td><td id="GregorianDateTd">1</td><td id="TableTd">00:00</td> <td id="TableTd">04:59 </td><td id="TableTd">13:16</td><td id="TableTd">21:53</td> <td id="TableTd">00:11</td></tr><tr ID="TodayRow"><td id="TableWeek">Thu</td><td id="GregorianDateTd">2</td><td id="TableTd">03:01</td> <td id="TableTd">00:00 </td><td id="TableTd">13:16</td><td id="TableTd">21:52</td> <td id="TableTd">00:12</td></tr><tr ID="OddRows"><td id="TableWeek">Fri</td><td id="GregorianDateTd">3</td><td id="TableTd">03:02</td> <td id="TableTd">05:01 </td><td id="TableTd">13:16</td><td id="TableTd">21:52</td> <td id="TableTd">00:12</td></tr><tr ID="EvenRows"><td id="TableWeek">Sat</td><td id="GregorianDateTd">4</td><td id="TableTd">03:04</td> <td id="TableTd">05:02 </td><td id="TableTd">13:17</td><td id="TableTd">21:51</td> <td id="TableTd">00:12</td></tr><tr ID="OddRows"><td id="TableWeek">Sun</td><td id="GregorianDateTd">5</td><td id="TableTd">03:05</td> <td id="TableTd">05:03 </td><td id="TableTd">13:17</td><td id="TableTd">21:51</td> <td id="TableTd">00:12</td></tr><tr ID="EvenRows"><td id="TableWeek">Mon</td><td id="GregorianDateTd">6</td><td id="TableTd">03:07</td> <td id="TableTd">05:03 </td><td id="TableTd">13:17</td><td id="TableTd">21:05</td> <td id="TableTd">00:12</td></tr><tr ID="OddRows"><td id="TableWeek">Tue</td><td id="GregorianDateTd">7</td><td id="TableTd">03:08</td> <td id="TableTd">05:04 </td><td id="TableTd">13:17</td><td id="TableTd">21:05</td> <td id="TableTd">00:13</td></tr><tr ID="EvenRows"><td id="TableWeek">Wed</td><td id="GregorianDateTd">8</td><td id="TableTd">03:01</td> <td id="TableTd">05:05 </td><td id="TableTd">13:17</td><td id="TableTd">21:49</td> <td id="TableTd">00:13</td></tr><tr ID="OddRows"><td id="TableWeek">Thu</td><td id="GregorianDateTd">9</td><td id="TableTd">03:12</td> <td id="TableTd">05:06 </td><td id="TableTd">13:17</td><td id="TableTd">21:49</td> <td id="TableTd">00:13</td></tr><tr ID="EvenRows"><td id="TableWeek">Fri</td><td id="GregorianDateTd">10</td><td id="TableTd">03:14</td> <td id="TableTd">05:07 </td><td id="TableTd">13:18</td><td id="TableTd">21:48</td> <td id="TableTd">00:13</td></tr><tr ID="OddRows"><td id="TableWeek">Sat</td><td id="GregorianDateTd">11</td><td id="TableTd">03:16</td> <td id="TableTd">05:08 </td><td id="TableTd">13:18</td><td id="TableTd">21:47</td> <td id="TableTd">00:13</td></tr><tr ID="EvenRows"><td id="TableWeek">Sun</td><td id="GregorianDateTd">12</td><td id="TableTd">03:17</td> <td id="TableTd">05:09 </td><td id="TableTd">13:18</td><td id="TableTd">21:46</td> <td id="TableTd">00:13</td></tr><tr ID="OddRows"><td id="TableWeek">Mon</td><td id="GregorianDateTd">13</td><td id="TableTd">03:19</td> <td id="TableTd">05:01 </td><td id="TableTd">13:18</td><td id="TableTd">21:45</td> <td id="TableTd">00:13</td></tr><tr ID="EvenRows"><td id="TableWeek">Tue</td><td id="GregorianDateTd">14</td><td id="TableTd">03:21</td> <td id="TableTd">05:12 </td><td id="TableTd">13:18</td><td id="TableTd">21:44</td> <td id="TableTd">00:13</td></tr><tr ID="OddRows"><td id="TableWeek">Wed</td><td id="GregorianDateTd">15</td><td id="TableTd">03:23</td> <td id="TableTd">05:13 </td><td id="TableTd">13:18</td><td id="TableTd">21:44</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Thu</td><td id="GregorianDateTd">16</td><td id="TableTd">03:25</td> <td id="TableTd">05:14 </td><td id="TableTd">13:18</td><td id="TableTd">21:43</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Fri</td><td id="GregorianDateTd">17</td><td id="TableTd">03:27</td> <td id="TableTd">05:15 </td><td id="TableTd">13:18</td><td id="TableTd">21:42</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Sat</td><td id="GregorianDateTd">18</td><td id="TableTd">03:03</td> <td id="TableTd">05:16 </td><td id="TableTd">13:18</td><td id="TableTd">21:04</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Sun</td><td id="GregorianDateTd">19</td><td id="TableTd">03:32</td> <td id="TableTd">05:18 </td><td id="TableTd">13:18</td><td id="TableTd">21:39</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Mon</td><td id="GregorianDateTd">20</td><td id="TableTd">03:34</td> <td id="TableTd">05:19 </td><td id="TableTd">13:19</td><td id="TableTd">21:38</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Tue</td><td id="GregorianDateTd">21</td><td id="TableTd">03:36</td> <td id="TableTd">05:02 </td><td id="TableTd">13:19</td><td id="TableTd">21:37</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Wed</td><td id="GregorianDateTd">22</td><td id="TableTd">03:38</td> <td id="TableTd">05:22 </td><td id="TableTd">13:19</td><td id="TableTd">21:36</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Thu</td><td id="GregorianDateTd">23</td><td id="TableTd">03:04</td> <td id="TableTd">05:23 </td><td id="TableTd">13:19</td><td id="TableTd">21:34</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Fri</td><td id="GregorianDateTd">24</td><td id="TableTd">03:43</td> <td id="TableTd">05:24 </td><td id="TableTd">13:19</td><td id="TableTd">21:33</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Sat</td><td id="GregorianDateTd">25</td><td id="TableTd">03:45</td> <td id="TableTd">05:26 </td><td id="TableTd">13:19</td><td id="TableTd">21:32</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Sun</td><td id="GregorianDateTd">26</td><td id="TableTd">03:47</td> <td id="TableTd">05:27 </td><td id="TableTd">13:19</td><td id="TableTd">21:03</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Mon</td><td id="GregorianDateTd">27</td><td id="TableTd">03:49</td> <td id="TableTd">05:29 </td><td id="TableTd">13:19</td><td id="TableTd">21:29</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Tue</td><td id="GregorianDateTd">28</td><td id="TableTd">03:52</td> <td id="TableTd">05:03 </td><td id="TableTd">13:19</td><td id="TableTd">21:27</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Wed</td><td id="GregorianDateTd">29</td><td id="TableTd">03:54</td> <td id="TableTd">05:31 </td><td id="TableTd">13:19</td><td id="TableTd">21:26</td> <td id="TableTd">00:14</td></tr><tr ID="EvenRows"><td id="TableWeek">Thu</td><td id="GregorianDateTd">30</td><td id="TableTd">03:56</td> <td id="TableTd">05:33 </td><td id="TableTd">13:19</td><td id="TableTd">21:24</td> <td id="TableTd">00:14</td></tr><tr ID="OddRows"><td id="TableWeek">Fri</td><td id="GregorianDateTd">31</td><td id="TableTd">03:58</td> <td id="TableTd">05:34 </td><td id="TableTd">13:19</td><td id="TableTd">21:23</td> <td id="TableTd">00:14</td></tr></table></table>

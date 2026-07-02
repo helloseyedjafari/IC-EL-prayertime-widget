@@ -1,0 +1,9 @@
+{
+  "name": "prayertime-widgets",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Display-only prayer-time widgets for Homey Pro, Android, and iOS (Scriptable).",
+  "scripts": {
+    "test": "node --test"
+  }
+}
