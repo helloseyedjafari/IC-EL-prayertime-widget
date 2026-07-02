@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Prayer Times</string>
+    <string name="widget_description">Today\'s prayer times for a UK city.</string>
+    <string name="config_title">Choose a city</string>
+    <string name="unavailable">Unavailable</string>
+</resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌙"
+            android:textSize="13sp"
+            android:paddingEnd="6dp" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="—"
+            android:textColor="@color/gold"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:id="@+id/stale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•"
+            android:textColor="@color/gold"
+            android:alpha="0.4"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/row_dawn" style="@style/PrayerRow">
+        <TextView style="@style/Glyph" android:text="☀" />
+        <TextView style="@style/RowName" android:text="Dawn" />
+        <TextView android:id="@+id/dawn_time" style="@style/RowTime" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/row_sunrise" style="@style/PrayerRow">
+        <TextView style="@style/Glyph" android:text="◐" />
+        <TextView style="@style/RowName" android:text="Sunrise" />
+        <TextView android:id="@+id/sunrise_time" style="@style/RowTime" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/row_noon" style="@style/PrayerRow">
+        <TextView style="@style/Glyph" android:text="☉" />
+        <TextView style="@style/RowName" android:text="Noon" />
+        <TextView android:id="@+id/noon_time" style="@style/RowTime" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/row_maghrib" style="@style/PrayerRow">
+        <TextView style="@style/Glyph" android:text="☾" />
+        <TextView style="@style/RowName" android:text="Maghrib" />
+        <TextView android:id="@+id/maghrib_time" style="@style/RowTime" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/row_midnight" style="@style/PrayerRow">
+        <TextView style="@style/Glyph" android:text="☾" />
+        <TextView style="@style/RowName" android:text="Midnight" />
+        <TextView android:id="@+id/midnight_time" style="@style/RowTime" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/next_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:text=""
+        android:textColor="@color/gold_dim"
+        android:textSize="11sp" />
+</LinearLayout>

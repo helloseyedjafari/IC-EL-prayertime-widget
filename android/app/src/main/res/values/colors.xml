@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="night_top">#0d1b2a</color>
+    <color name="night_bottom">#1b263b</color>
+    <color name="gold">#e0b054</color>
+    <color name="label">#e8eef5</color>
+    <color name="label_dim">#D9e8eef5</color>
+    <color name="gold_dim">#D9e0b054</color>
+    <color name="highlight">#24e0b054</color>
+</resources>
