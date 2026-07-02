@@ -13,5 +13,8 @@ android/app/build/
 android/local.properties
 *.apk
 
+# Release staging
+dist/
+
 # Misc
 *.log

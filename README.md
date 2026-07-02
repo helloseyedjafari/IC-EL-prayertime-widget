@@ -1,36 +1,84 @@
-# Prayer Time Widgets
+<div align="center">
 
-Display-only "today's prayer times" widgets for **Homey Pro**, **Android**, and
-**iOS** (via [Scriptable](https://scriptable.app) — no App Store app of my own).
+# 🌙 IC‑EL Prayer Time Widgets
 
-Each widget shows **Dawn · Sunrise · Noon · Maghrib · Midnight** for a chosen UK
-city, the city name, and a static **next-prayer** label. No alarms, no audio — just
-a beautiful little card.
+**A beautiful, display‑only prayer‑times widget for your Homey Pro dashboard, Android home screen, and iOS — one dark‑celestial design, five UK cities, zero alarms.**
 
-<p align="center">
-  <img src="homey/widgets/prayer-times/preview-dark.png" width="340" alt="Prayer Times widget — dark celestial">
-</p>
+[![Latest release](https://img.shields.io/github/v/release/helloseyedjafari/IC-EL-prayertime-widget?display_name=tag&label=latest&color=e0b054&labelColor=0d1b2a)](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest)
+[![CI](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/actions/workflows/ci.yml/badge.svg)](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/actions/workflows/ci.yml)
+[![Downloads](https://img.shields.io/github/downloads/helloseyedjafari/IC-EL-prayertime-widget/total?color=e0b054&labelColor=0d1b2a)](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases)
+[![License: MIT](https://img.shields.io/github/license/helloseyedjafari/IC-EL-prayertime-widget?color=e0b054&labelColor=0d1b2a)](LICENSE)
+
+![Homey Pro](https://img.shields.io/badge/Homey_Pro-native_app-e0b054?labelColor=0d1b2a)
+![Android](https://img.shields.io/badge/Android-home_screen-e0b054?labelColor=0d1b2a)
+![iOS](https://img.shields.io/badge/iOS-Scriptable-e0b054?labelColor=0d1b2a)
+
+<img src="homey/widgets/prayer-times/preview-dark.png" width="340" alt="Prayer Times widget — dark celestial theme">
+
+</div>
+
+Each widget shows today's **Dawn · Sunrise · Noon · Maghrib · Midnight** for a chosen
+city, the city name, and a static **next‑prayer** label. Data comes straight from the
+[Islamic Centre of England timetable](https://ic-el.uk/prayer_times/) — no server, no
+API key, no account.
 
 Cities: **London · Cardiff · Glasgow · Manchester · Newcastle** (default London).
 
-Data comes straight from the [Islamic Centre of England timetable](https://ic-el.uk/prayer_times/)
-— see [`shared/parsing-contract.md`](shared/parsing-contract.md). No server, no API key.
+---
+
+## ⬇️ Download the latest build
+
+Every [release](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases)
+attaches ready‑to‑use files. Grab the newest with these permanent links:
+
+| Platform | Latest download |
+|----------|-----------------|
+| 🤖 **Android** (debug APK) | [`PrayerTimes-debug.apk`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk) |
+| 🍏 **iOS** (Scriptable script) | [`prayer-times.scriptable.js`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/prayer-times.scriptable.js) |
+| 🟦 **Homey Pro** (app source zip) | [`PrayerTimes-homey-app.zip`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-homey-app.zip) |
+
+> **Want a specific version?** Open the
+> [Releases page](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases),
+> pick a tag (e.g. `v1.0.0`), and download that release's assets. The `latest/…` links
+> above always point at the most recent release.
 
 ---
 
-## Repository layout
+## 📲 Install
 
-| Path | What |
-|------|------|
-| [`shared/`](shared/) | Canonical parser (`prayer-core.js`) + the parsing contract + HTML fixtures + tests |
-| [`homey/`](homey/) | Homey Pro app hosting the dashboard widget |
-| [`ios-scriptable/`](ios-scriptable/) | Single Scriptable script |
-| [`android/`](android/) | Android Studio project (home-screen widget) |
-| [`docs/superpowers/`](docs/superpowers/) | Design spec + implementation plan |
+### 🤖 Android
 
----
+**From a release (no Android Studio):**
 
-## Run it
+```bash
+# download the APK from the link above, then:
+adb install PrayerTimes-debug.apk
+```
+
+Or copy the APK to your phone and tap it (allow *“install from this source”*).
+
+**From source:**
+
+```bash
+cd android
+./gradlew installDebug        # to a connected phone/emulator
+```
+
+Then long‑press the home screen → **Widgets** → **Prayer Times** → drop it → pick a
+city. The widget is **resizable** (compact vs. roomy layouts), refreshes every ~6 h
+via WorkManager, and updates on tap. Add several for different cities.
+
+### 🍏 iOS — Scriptable
+
+1. Install **[Scriptable](https://scriptable.app)** (free) from the App Store.
+2. New script → name it **Prayer Times** → paste
+   [`prayer-times.scriptable.js`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/prayer-times.scriptable.js)
+   (or [`ios-scriptable/prayer-times.js`](ios-scriptable/prayer-times.js)) → run once to preview.
+3. Add a Scriptable widget to the home screen → **Edit Widget** → Script = **Prayer
+   Times**, **Parameter** = a city (e.g. `Glasgow`; blank = London).
+
+Small size shows all five compactly; medium/large add glyphs + a `Next · …` tag.
+More: [`ios-scriptable/README.md`](ios-scriptable/README.md).
 
 ### 🟦 Homey Pro
 
@@ -44,71 +92,78 @@ cd homey
 homey app install               # builds + installs onto your Homey Pro
 ```
 
-Then on your Homey **dashboard**: add a widget → **Prayer Times** → open its
-settings → pick a **City**. Done.
+Then on your Homey **dashboard**: add a widget → **Prayer Times** → open its settings
+→ pick a **City**.
 
-- **Daily auto-update without touching the screen:** the app backend refreshes on
-  its own (hourly + a precise 00:05 London rollover) and *pushes* new times to the
-  widget, so an always-on dashboard updates itself. (Details: spec §6.4.)
-- To try it live first without installing: `cd homey && homey app run`.
-- If `homey app install` complains about `compatibility`, lower `">=12.0.0"` in
-  `homey/.homeycompose/app.json` to match your Homey firmware.
+> **Daily auto‑update without touching the screen.** The app backend refreshes on its
+> own (hourly + a precise 00:05 London rollover) and *pushes* new times to the widget,
+> so an always‑on dashboard updates itself even though dashboard widget timers get
+> throttled when idle. To try it live first: `cd homey && homey app run`.
 
-### 🍏 iOS — Scriptable
-
-1. Install **Scriptable** (free) from the App Store.
-2. New script → name it **Prayer Times** → paste
-   [`ios-scriptable/prayer-times.js`](ios-scriptable/prayer-times.js) → run once to preview.
-3. Add a Scriptable widget to the home screen → **Edit Widget** → Script = **Prayer
-   Times**, **Parameter** = a city (e.g. `Glasgow`; blank = London).
-
-Small size shows all five compactly; medium/large add the glyphs + a `Next · …` tag.
-Full details: [`ios-scriptable/README.md`](ios-scriptable/README.md).
-
-### 🤖 Android
-
-**Easiest — install the prebuilt debug APK** (no Android Studio needed):
-
-```bash
-adb install android/app/build/outputs/apk/debug/app-debug.apk
-```
-
-(Or copy the APK to the phone and tap it — allow "install from this source".)
-
-**Or build it yourself:**
-
-```bash
-cd android
-./gradlew installDebug        # to a connected phone/emulator
-# or: ./gradlew assembleDebug  → app/build/outputs/apk/debug/app-debug.apk
-```
-
-Then long-press the home screen → **Widgets** → **Prayer Times** → place it → pick a
-city in the config screen. The widget is **resizable** (compact vs. roomy layouts),
-refreshes ~every 6h via WorkManager, and updates on tap. Place several for different
-cities. More: [`android/README.md`](android/README.md).
+More: [`homey/`](homey/) and design spec §6.4.
 
 ---
 
-## Behaviour notes
+## ✨ Why it's nice
 
-- **Display only.** No alarms, notifications, or audio. The "next prayer" is a static
-  label recomputed on refresh — it never ticks.
-- **Timezone.** "Today" and "now" are always computed in `Europe/London`, so the
-  right day and next-prayer show regardless of device timezone.
-- **Offline.** Each widget caches the last good times per city; if the source is
-  unreachable it shows those with a small dim dot instead of going blank.
-- **Source quirks self-heal.** The timetable occasionally emits a bad `00:00` for
-  dawn/sunrise/noon; the parser repairs it by interpolating the neighbouring days.
+- **Display only.** No alarms, notifications, or audio. The next‑prayer label is static
+  — it never ticks.
+- **One design, three platforms.** Deep‑navy → indigo gradient, warm gold accents, a
+  glyph per prayer, the next prayer subtly highlighted.
+- **Correct by timezone.** “Today” and “now” are always computed in `Europe/London`.
+- **Resilient.** Each widget caches the last good times per city; if the source is
+  unreachable it shows those (with a dim dot) instead of a blank card.
+- **Self‑healing data.** The source occasionally emits a bad `00:00` for
+  dawn/sunrise/noon — the parser repairs it by interpolating the neighbouring days.
 
-## Development
+---
 
-```bash
-npm test          # runs the shared JS parser tests (Node, zero deps)
-cd android && ./gradlew testDebugUnitTest   # Kotlin parser parity tests
+## 🧠 How it works
+
+All three widgets fetch the same monthly HTML table and read today's row:
+
+```
+https://ic-el.uk/wp-content/icel/praying_timetable/prayer_times_en.php?year=YYYY&city=CITY&month=M
 ```
 
-The JS core (`shared/prayer-core.js`), its inlined copy in the Scriptable file, the
-Homey copy (`homey/lib/prayer-core.js`), and the Kotlin port
-(`android/.../PrayerCore.kt`) all implement the same
-[`shared/parsing-contract.md`](shared/parsing-contract.md). Change them together.
+The parsing rules live once in [`shared/parsing-contract.md`](shared/parsing-contract.md).
+The reference implementation is the JS core `shared/prayer-core.js` — reused directly by
+Homey and iOS, and ported to Kotlin (`android/.../PrayerCore.kt`). All are covered by
+tests against saved fixtures (including the Cardiff `00:00` repair case).
+
+| Path | What |
+|------|------|
+| [`shared/`](shared/) | Canonical parser, parsing contract, HTML fixtures, tests |
+| [`homey/`](homey/) | Homey Pro app + dashboard widget |
+| [`ios-scriptable/`](ios-scriptable/) | Single Scriptable script |
+| [`android/`](android/) | Android Studio project (home‑screen widget) |
+| [`docs/superpowers/`](docs/superpowers/) | Design spec + implementation plan |
+
+---
+
+## 🛠️ Development
+
+```bash
+npm test                                     # shared JS parser tests (Node, zero deps)
+cd android && ./gradlew testDebugUnitTest    # Kotlin parser parity tests
+```
+
+CI runs both on every push/PR to `main`.
+
+### Cutting a release
+
+Tag the repo and push the tag — the [release workflow](.github/workflows/release.yml)
+builds everything and publishes a GitHub Release with the assets above:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+---
+
+## 📜 License
+
+[MIT](LICENSE). Prayer‑time data belongs to the
+[Islamic Centre of England](https://ic-el.uk); this is an unofficial, display‑only
+client and is not affiliated with or endorsed by them.
