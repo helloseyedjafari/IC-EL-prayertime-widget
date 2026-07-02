@@ -81,6 +81,7 @@ jobs:
           fi
           cp ios-scriptable/prayer-times.js dist/prayer-times.scriptable.js
           cp ios-scriptable/install.js dist/prayer-times-installer.js
+          cp macos-uebersicht/prayer-times.jsx dist/prayer-times.uebersicht.jsx
           (cd homey && zip -qr ../dist/PrayerTimes-homey-app.zip . -x '*/node_modules/*')
           ls -la dist
 

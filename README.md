@@ -12,6 +12,7 @@
 ![Homey Pro](https://img.shields.io/badge/Homey_Pro-native_app-e0b054?labelColor=0d1b2a)
 ![Android](https://img.shields.io/badge/Android-home_screen-e0b054?labelColor=0d1b2a)
 ![iOS](https://img.shields.io/badge/iOS-Scriptable-e0b054?labelColor=0d1b2a)
+![macOS](https://img.shields.io/badge/macOS-Übersicht-e0b054?labelColor=0d1b2a)
 
 <img src="homey/widgets/prayer-times/preview-dark.png" width="340" alt="Prayer Times widget — dark celestial theme">
 
@@ -134,24 +135,28 @@ best‑effort — usually several times a day, enough to show the current day �
 guaranteed cadence the Homey and Android versions have. **Tap it** (with *Run Script*
 set) to force a fresh run any time.
 
-#### 🖥️ Also on macOS (via Continuity — no extra setup)
+### 🖥️ macOS
 
-Scriptable isn't a Mac app, but **macOS Sonoma (14) or later** can show your **iPhone's**
-Prayer Times widget on the Mac through **Continuity** — nothing to install on the Mac:
+Two ways, depending on whether you want it to depend on your iPhone.
 
-1. Set it up on your **iPhone** first (steps above).
-2. Keep the iPhone **nearby / on the same Wi‑Fi and Apple ID** as the Mac.
-3. On the Mac, click the **date/time** in the menu bar (or right‑click the desktop) →
-   scroll down → **Edit Widgets**.
-4. In the gallery, find **Scriptable** (your iPhone apps appear here via Continuity) →
-   drag **Prayer Times** onto the desktop or Notification Center.
+**⭐ Option A — Übersicht (standalone desktop widget, no iPhone).** A real Mac desktop
+widget running on [Übersicht](https://tracesof.net/uebersicht/) (free), reusing the same
+parser + design:
 
-Notes:
-- It **mirrors the iPhone widget**, so the **city and size** follow whatever you set on
-  the iPhone — no separate configuration on the Mac.
-- Tap‑to‑run / refresh / city‑picker needs a live Continuity link to the iPhone; if the
-  iPhone is away, the Mac shows the **last streamed** times.
-- Requires macOS Sonoma+; older macOS can't show iPhone widgets.
+```bash
+brew install --cask ubersicht
+```
+Then Übersicht menu‑bar icon → **Open Widgets Folder** → drop in
+[`macos-uebersicht/prayer-times.jsx`](macos-uebersicht/prayer-times.jsx). Edit the
+`CITY = "London"` line to change city. Full steps:
+[`macos-uebersicht/README.md`](macos-uebersicht/README.md).
+
+**Option B — Continuity (mirror your iPhone).** Scriptable isn't a Mac app, but
+**macOS Sonoma (14)+** can stream your **iPhone's** Prayer Times widget to the Mac:
+set it up on the iPhone (above), keep the iPhone nearby / same Apple ID, then on the Mac
+click the **date/time** in the menu bar → **Edit Widgets** → find **Scriptable** → drag
+**Prayer Times** out. It mirrors the iPhone (city/size follow the phone) and needs the
+iPhone nearby; if it's away, the Mac shows the last streamed times.
 
 ### 🟦 Homey Pro
 
@@ -209,8 +214,9 @@ tests against saved fixtures (including the Cardiff `00:00` repair case).
 |------|------|
 | [`shared/`](shared/) | Canonical parser, parsing contract, HTML fixtures, tests |
 | [`homey/`](homey/) | Homey Pro app + dashboard widget |
-| [`ios-scriptable/`](ios-scriptable/) | Single Scriptable script |
+| [`ios-scriptable/`](ios-scriptable/) | Single Scriptable script (iOS + macOS via Continuity) |
 | [`android/`](android/) | Android Studio project (home‑screen widget) |
+| [`macos-uebersicht/`](macos-uebersicht/) | Übersicht desktop widget (standalone macOS) |
 | [`docs/superpowers/`](docs/superpowers/) | Design spec + implementation plan |
 
 ---
