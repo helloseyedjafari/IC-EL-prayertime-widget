@@ -70,12 +70,28 @@ via WorkManager, and updates on tap. Add several for different cities.
 
 ### 🍏 iOS — Scriptable
 
-1. Install **[Scriptable](https://scriptable.app)** (free) from the App Store.
-2. New script → name it **Prayer Times** → paste
-   [`prayer-times.scriptable.js`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/prayer-times.scriptable.js)
-   (or [`ios-scriptable/prayer-times.js`](ios-scriptable/prayer-times.js)) → run once to preview.
-3. Add a Scriptable widget to the home screen → **Edit Widget** → Script = **Prayer
-   Times**, **Parameter** = a city (e.g. `Glasgow`; blank = London).
+Install **[Scriptable](https://scriptable.app)** (free) from the App Store, then use
+either method.
+
+**⭐ Method A — one‑time installer (easiest).** Nothing to download or hunt for:
+
+1. Open Scriptable → tap **+** (new script).
+2. Copy the whole installer below and paste it in:
+   <br>👉 **[`ios-scriptable/install.js`](ios-scriptable/install.js)** — open it, tap
+   **Copy raw file** (the icon at the top‑right of the code box on GitHub), paste into Scriptable.
+3. Tap **▶︎ Run** once. It downloads the widget and creates a **"Prayer Times"** script for you.
+4. Delete the installer if you like. (Re‑run it any time to update.)
+
+**Method B — paste the script directly.** Copy the **code** (the file's contents, ~230
+lines — *not* the file itself):
+
+1. Open the raw script → **[prayer‑times.js (raw)](https://raw.githubusercontent.com/helloseyedjafari/IC-EL-prayertime-widget/main/ios-scriptable/prayer-times.js)**.
+2. In Safari, tap and hold → **Select All** → **Copy** (or use the **Copy raw file** button on
+   the [file page](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/blob/main/ios-scriptable/prayer-times.js)).
+3. In Scriptable: **+** new script → name it **Prayer Times** → paste → **▶︎ Run** to preview.
+
+**Then, for both methods** — add a Scriptable widget to the home screen → **Edit Widget**
+→ Script = **Prayer Times**, **Parameter** = a city (e.g. `Glasgow`; blank = London).
 
 Small size shows all five compactly; medium/large add glyphs + a `Next · …` tag.
 More: [`ios-scriptable/README.md`](ios-scriptable/README.md).

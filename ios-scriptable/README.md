@@ -4,11 +4,29 @@ A single self-contained script. No App Store app of your own, no build step.
 
 ## Install
 
-1. Install **Scriptable** (free) from the App Store.
-2. Open Scriptable → tap **+** (new script) → name it **Prayer Times**.
-3. Open [`prayer-times.js`](./prayer-times.js), copy the whole file, and paste it in.
-   (Easiest: open this file on your phone and copy, or AirDrop it to yourself.)
-4. Tap ▶︎ once to run it in-app — you should see a preview of the widget.
+Install **Scriptable** (free) from the App Store, then pick one method.
+
+### ⭐ Method A — one-time installer (easiest)
+
+No downloading or file-hunting. In Scriptable, tap **+**, paste the installer, run it once,
+and it creates the **"Prayer Times"** script for you (re-run to update).
+
+1. Open [`install.js`](./install.js) on GitHub → use the **Copy raw file** button
+   (top-right of the code box) to copy its contents.
+2. Scriptable → **+** (new script) → paste → tap **▶︎ Run**.
+3. A **"Prayer Times"** script appears. You can delete the installer.
+
+### Method B — paste the script directly
+
+Copy the **code** (the file's *contents*, ~230 lines — not the file itself):
+
+1. Open the raw script:
+   [prayer-times.js (raw)](https://raw.githubusercontent.com/helloseyedjafari/IC-EL-prayertime-widget/main/ios-scriptable/prayer-times.js)
+   → **Select All** → **Copy**
+   (or the **Copy raw file** button on the
+   [file page](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/blob/main/ios-scriptable/prayer-times.js)).
+2. Scriptable → **+** new script → name it **Prayer Times** → paste.
+3. Tap ▶︎ once to preview.
 
 ## Add to home screen
 

@@ -53,6 +53,7 @@ jobs:
           mkdir -p dist
           cp android/app/build/outputs/apk/debug/app-debug.apk dist/PrayerTimes-debug.apk
           cp ios-scriptable/prayer-times.js dist/prayer-times.scriptable.js
+          cp ios-scriptable/install.js dist/prayer-times-installer.js
           (cd homey && zip -qr ../dist/PrayerTimes-homey-app.zip . -x '*/node_modules/*')
           ls -la dist
 
@@ -65,4 +66,5 @@ jobs:
           files: |
             dist/PrayerTimes-debug.apk
             dist/prayer-times.scriptable.js
+            dist/prayer-times-installer.js
             dist/PrayerTimes-homey-app.zip
