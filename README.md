@@ -111,10 +111,13 @@ have to place a Scriptable **widget** and point it at that script:
 4. Swipe to choose a size (**Small / Medium / Large**) → tap **Add Widget**.
 5. Tap **Done**, then **tap the new (blank) Scriptable widget** to open its settings
    (or long‑press it → **Edit Widget**).
-6. **Script** → choose **Prayer Times**.
-7. **Parameter** → type a city: `London`, `Cardiff`, `Glasgow`, `Manchester`, or
-   `Newcastle` (leave blank for **London**).
-8. Tap anywhere outside to finish — the times appear.
+6. **Script** → choose **Prayer Times** (the script you added to Scriptable).
+7. **When Interacting** → choose **Run Script**. ⚠️ Important — the default is *Open App*,
+   which just opens Scriptable. **Run Script** makes a tap actually run the widget: it
+   refreshes the times and opens the city picker.
+8. **Parameter** → optionally type a city: `London`, `Cardiff`, `Glasgow`, `Manchester`,
+   or `Newcastle`. Leave blank to use the in‑app picker (default London).
+9. Tap anywhere outside to finish — the times appear.
 
 **To set / change the city (two ways):**
 > - **Tap the widget** (or run the script in the app) → a **“choose city”** menu pops
@@ -124,6 +127,31 @@ have to place a Scriptable **widget** and point it at that script:
 >
 > Small = all five compact; Medium / Large = glyphs + a `Next · …` tag.
 > More: [`ios-scriptable/README.md`](ios-scriptable/README.md).
+
+**Updating:** the widget refreshes on **iOS's own schedule** (the script asks for a
+refresh every few hours; iOS decides the exact timing based on battery/usage). So it's
+best‑effort — usually several times a day, enough to show the current day — not the
+guaranteed cadence the Homey and Android versions have. **Tap it** (with *Run Script*
+set) to force a fresh run any time.
+
+#### 🖥️ Also on macOS (via Continuity — no extra setup)
+
+Scriptable isn't a Mac app, but **macOS Sonoma (14) or later** can show your **iPhone's**
+Prayer Times widget on the Mac through **Continuity** — nothing to install on the Mac:
+
+1. Set it up on your **iPhone** first (steps above).
+2. Keep the iPhone **nearby / on the same Wi‑Fi and Apple ID** as the Mac.
+3. On the Mac, click the **date/time** in the menu bar (or right‑click the desktop) →
+   scroll down → **Edit Widgets**.
+4. In the gallery, find **Scriptable** (your iPhone apps appear here via Continuity) →
+   drag **Prayer Times** onto the desktop or Notification Center.
+
+Notes:
+- It **mirrors the iPhone widget**, so the **city and size** follow whatever you set on
+  the iPhone — no separate configuration on the Mac.
+- Tap‑to‑run / refresh / city‑picker needs a live Continuity link to the iPhone; if the
+  iPhone is away, the Mac shows the **last streamed** times.
+- Requires macOS Sonoma+; older macOS can't show iPhone widgets.
 
 ### 🟦 Homey Pro
 

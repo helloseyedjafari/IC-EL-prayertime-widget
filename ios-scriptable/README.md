@@ -34,7 +34,10 @@ Copy the **code** (the file's *contents*, ~230 lines — not the file itself):
    (small / medium / large) → **Add Widget**.
 2. Long-press the new widget → **Edit Widget**.
 3. **Script** → choose **Prayer Times**.
-4. (Optional) **Parameter** → a city — see below. Leave blank to use the in-app picker.
+4. **When Interacting** → choose **Run Script**. ⚠️ The default is *Open App*, which just
+   opens Scriptable. **Run Script** makes a tap actually run the widget — it refreshes the
+   times and opens the city picker.
+5. (Optional) **Parameter** → a city — see below. Leave blank to use the in-app picker.
 
 ## Choosing the city
 
@@ -51,12 +54,27 @@ Two ways:
 - **Small** — city + all five times, compact (next prayer highlighted).
 - **Medium / Large** — all five with glyphs + a `Next · …` tag.
 
+## macOS (via Continuity)
+
+Scriptable isn't a Mac app, but **macOS Sonoma (14)+** can show your **iPhone's** widget on
+the Mac via **Continuity** — no Mac install:
+
+1. Set it up on the **iPhone** first.
+2. Keep the iPhone nearby / same Wi‑Fi + Apple ID.
+3. Mac → click the **date/time** in the menu bar (or right‑click desktop) → **Edit Widgets**
+   → find **Scriptable** in the gallery → drag **Prayer Times** out.
+
+It mirrors the iPhone widget (city/size follow the iPhone). Tap‑to‑run needs a live link to
+the iPhone; otherwise the Mac shows the last streamed times.
+
 ## Notes
 
 - **Display only** — no alarms, no sound.
-- Updates itself through the day (iOS refreshes widgets on its own schedule; the
-  script requests a refresh roughly every 3 hours). The new day's times appear at
-  the next system refresh.
+- **Auto‑update:** best‑effort, on **iOS's** schedule. The script asks iOS to refresh
+  roughly every 3 hours, but iOS decides the actual timing (battery/usage), so it's not
+  the guaranteed cadence the Homey/Android versions have — usually several times a day,
+  enough to roll over to the new day. **Tap the widget** (with *Run Script* set) to force
+  a fresh run any time.
 - If the source is unreachable, it shows the **last successful** times with a small
   dim dot next to the city, instead of going blank.
 - The parser logic is kept in sync with [`../shared/prayer-core.js`](../shared/prayer-core.js)
