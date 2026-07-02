@@ -33,7 +33,8 @@ attaches ready‑to‑use files. Grab the newest with these permanent links:
 
 | Platform | Latest download |
 |----------|-----------------|
-| 🤖 **Android** (debug APK) | [`PrayerTimes-debug.apk`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk) |
+| 🤖 **Android** — debug APK | [`PrayerTimes-debug.apk`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk) |
+| 🤖 **Android** — release APK | _coming soon_ |
 | 🍏 **iOS** (Scriptable script) | [`prayer-times.scriptable.js`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/prayer-times.scriptable.js) |
 | 🟦 **Homey Pro** (app source zip) | [`PrayerTimes-homey-app.zip`](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-homey-app.zip) |
 
@@ -48,10 +49,14 @@ attaches ready‑to‑use files. Grab the newest with these permanent links:
 
 ### 🤖 Android
 
-**From a release (no Android Studio):**
+**📥 Download the APK:**
+
+- **Debug** (available now) → [**PrayerTimes-debug.apk**](https://github.com/helloseyedjafari/IC-EL-prayertime-widget/releases/latest/download/PrayerTimes-debug.apk)
+- **Release** (signed) → _coming soon_ — for now use the debug build above.
+
+**Install it (no Android Studio):**
 
 ```bash
-# download the APK from the link above, then:
 adb install PrayerTimes-debug.apk
 ```
 
