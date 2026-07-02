@@ -1,0 +1,14 @@
+{
+  "id": "com.seyedjafari.prayertimes",
+  "version": "1.0.0",
+  "compatibility": ">=12.0.0",
+  "platforms": ["local"],
+  "sdk": 3,
+  "runtime": "nodejs",
+  "name": { "en": "Prayer Times" },
+  "description": { "en": "Display-only prayer times for UK cities on your dashboard." },
+  "category": ["tools"],
+  "permissions": [],
+  "brandColor": "#0d1b2a",
+  "author": { "name": "Seyed Jafari" }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { --gold:#e0b054; --label:#e8eef5; }
+  html, body { margin:0; padding:0; }
+  #card {
+    box-sizing:border-box; height:100vh; padding:14px 16px;
+    background:linear-gradient(180deg,#0d1b2a 0%,#1b263b 100%);
+    font-family:-apple-system,Roboto,"Segoe UI",sans-serif; color:var(--label);
+    border-radius:14px; display:flex; flex-direction:column;
+  }
+  #head { display:flex; align-items:center; gap:6px; margin-bottom:8px; }
+  #city { color:var(--gold); font-weight:600; font-size:14px; letter-spacing:1.5px; }
+  #stale { color:var(--gold); opacity:.4; display:none; }
+  .row { display:flex; align-items:center; padding:5px 8px; border-radius:7px; }
+  .row.next { background:rgba(224,176,84,.14); }
+  .glyph { color:var(--gold); width:20px; }
+  .name { flex:1; font-size:14px; opacity:.85; }
+  .time { color:var(--gold); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; }
+  #next { text-align:center; color:var(--gold); opacity:.85; font-size:11px; margin-top:6px; }
+  #err { text-align:center; opacity:.7; font-size:13px; margin-top:20px; display:none; }
+</style>
+</head>
+<body>
+<div id="card">
+  <div id="head"><span>🌙</span><span id="city">—</span><span id="stale">•</span></div>
+  <div id="rows"></div>
+  <div id="next"></div>
+  <div id="err">Prayer times unavailable</div>
+</div>
+<script type="text/javascript">
+  const GLYPH = { Dawn:"☀", Sunrise:"◐", Noon:"☉", Maghrib:"☾", Midnight:"☾" };
+  const ORDER = [["Dawn","dawn"],["Sunrise","sunrise"],["Noon","noon"],["Maghrib","maghrib"],["Midnight","midnight"]];
+  let currentCity = "London";
+
+  function render(d) {
+    document.getElementById("err").style.display = "none";
+    document.getElementById("city").textContent = d.city.toUpperCase();
+    document.getElementById("stale").style.display = d.stale ? "inline" : "none";
+    const rows = document.getElementById("rows");
+    rows.innerHTML = "";
+    for (const [name, key] of ORDER) {
+      const r = document.createElement("div");
+      r.className = "row" + (name === d.next.name ? " next" : "");
+      r.innerHTML = '<span class="glyph">' + GLYPH[name] + '</span>' +
+        '<span class="name">' + name + '</span>' +
+        '<span class="time">' + d[key] + '</span>';
+      rows.appendChild(r);
+    }
+    document.getElementById("next").textContent = "Next · " + d.next.name + " " + d.next.time;
+  }
+
+  function showError() { document.getElementById("err").style.display = "block"; }
+
+  async function load(Homey) {
+    try {
+      render(await Homey.api("GET", "/today?city=" + encodeURIComponent(currentCity)));
+    } catch (e) {
+      showError();
+    }
+  }
+
+  function onHomeyReady(Homey) {
+    const s = Homey.getSettings();
+    currentCity = (s && s.city) || "London";
+    load(Homey);
+    // realtime push from the always-running backend (daily rollover / hourly tick)
+    Homey.on("prayertimes:update", (d) => { if (d && d.city === currentCity) render(d); });
+    // belt-and-suspenders while the dashboard is visible
+    setInterval(() => load(Homey), 30 * 60 * 1000);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) load(Homey); });
+    Homey.ready({ height: 240 });
+  }
+</script>
+</body>
+</html>

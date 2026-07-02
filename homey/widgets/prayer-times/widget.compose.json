@@ -1,0 +1,23 @@
+{
+  "name": { "en": "Prayer Times" },
+  "height": 240,
+  "transparent": false,
+  "settings": [
+    {
+      "id": "city",
+      "type": "dropdown",
+      "title": { "en": "City" },
+      "value": "London",
+      "values": [
+        { "id": "London", "title": { "en": "London" } },
+        { "id": "Cardiff", "title": { "en": "Cardiff" } },
+        { "id": "Glasgow", "title": { "en": "Glasgow" } },
+        { "id": "Manchester", "title": { "en": "Manchester" } },
+        { "id": "Newcastle", "title": { "en": "Newcastle" } }
+      ]
+    }
+  ],
+  "api": {
+    "getToday": { "method": "GET", "path": "/today" }
+  }
+}
