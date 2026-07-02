@@ -6,10 +6,10 @@
   :root { --gold:#e0b054; --label:#e8eef5; }
   html, body { margin:0; padding:0; }
   #card {
-    box-sizing:border-box; min-height:100vh; padding:14px 14px;
+    box-sizing:border-box; width:100%; padding:8px 14px;
     background:linear-gradient(180deg,#0d1b2a 0%,#1b263b 100%);
     font-family:-apple-system,Roboto,"Segoe UI",sans-serif; color:var(--label);
-    border-radius:14px; display:flex; flex-direction:column; justify-content:center;
+    border-radius:14px; display:flex; flex-direction:column;
   }
   /* Shared column grid: header and every row use .line so glyph/name/time align */
   .line { display:flex; align-items:center; padding:5px 6px; border-radius:8px; }
@@ -17,10 +17,10 @@
   .glyph { flex:0 0 28px; text-align:center; color:var(--gold); }
   .name { flex:1; padding-left:8px; opacity:.9; }
   .time { color:var(--gold); font-weight:700; font-variant-numeric:tabular-nums; }
-  #head { margin-bottom:6px; }
+  #head { margin-bottom:4px; }
   #city { color:var(--gold); font-weight:700; letter-spacing:1.5px; opacity:1; }
   #stale { flex:0 0 auto; color:var(--gold); opacity:.4; display:none; padding-left:6px; }
-  #next { text-align:center; color:var(--gold); opacity:.85; margin-top:8px; }
+  #next { text-align:center; color:var(--gold); opacity:.85; margin-top:6px; }
   #err { text-align:center; opacity:.7; margin-top:20px; display:none; }
 
   /* Size scales (chosen in the widget settings) */
@@ -29,11 +29,11 @@
 
   #card.s-large .glyph { font-size:20px; } #card.s-large .name, #card.s-large #city { font-size:18px; }
   #card.s-large .time { font-size:20px; } #card.s-large #next { font-size:13px; }
-  #card.s-large .line { padding:7px 6px; }
+  #card.s-large .line { padding:6px 6px; }
 
   #card.s-xlarge .glyph { font-size:23px; } #card.s-xlarge .name, #card.s-xlarge #city { font-size:21px; }
   #card.s-xlarge .time { font-size:24px; } #card.s-xlarge #next { font-size:15px; }
-  #card.s-xlarge .line { padding:9px 6px; }
+  #card.s-xlarge .line { padding:7px 6px; }
 </style>
 </head>
 <body>
@@ -50,12 +50,17 @@
 <script type="text/javascript">
   const GLYPH = { Dawn:"☀", Sunrise:"◐", Noon:"☉", Maghrib:"☾", Midnight:"☾" };
   const ORDER = [["Dawn","dawn"],["Sunrise","sunrise"],["Noon","noon"],["Maghrib","maghrib"],["Midnight","midnight"]];
-  const SIZES = {
-    regular: { cls:"s-regular", height:260 },
-    large:   { cls:"s-large",   height:330 },
-    xlarge:  { cls:"s-xlarge",  height:410 },
-  };
+  // Fallback heights only (used until the first content measurement); the widget
+  // then auto-fits its exact content height via Homey.setHeight — no wasted margin.
+  const SIZES = { regular:{cls:"s-regular",height:210}, large:{cls:"s-large",height:250}, xlarge:{cls:"s-xlarge",height:300} };
   let currentCity = "London";
+  let homeyRef = null;
+
+  function fitHeight() {
+    if (!homeyRef) return;
+    const h = Math.ceil(document.getElementById("card").getBoundingClientRect().height);
+    if (h > 0) homeyRef.setHeight(h);
+  }
 
   function render(d) {
     document.getElementById("err").style.display = "none";
@@ -72,9 +77,10 @@
       rows.appendChild(r);
     }
     document.getElementById("next").textContent = "Next · " + d.next.name + " " + d.next.time;
+    requestAnimationFrame(fitHeight);
   }
 
-  function showError() { document.getElementById("err").style.display = "block"; }
+  function showError() { document.getElementById("err").style.display = "block"; requestAnimationFrame(fitHeight); }
 
   async function load(Homey) {
     try {
@@ -85,6 +91,7 @@
   }
 
   function onHomeyReady(Homey) {
+    homeyRef = Homey;
     const s = Homey.getSettings() || {};
     currentCity = s.city || "London";
     const sz = SIZES[s.size] || SIZES.regular;
