@@ -74,9 +74,9 @@ cd android
 ```
 
 Long‑press the home screen → **Widgets** → **Prayer Times** → drop it. The widget is
-**resizable from 2×2 up to a large card**, refreshes every ~6 h via WorkManager, and
-updates on tap. Long‑press → **Reconfigure** to change the city; add several for
-different cities.
+**resizable from 2×2 up to a large card** and refreshes every ~6 h via WorkManager.
+**Tap the widget any time to change its city** (or long‑press → Reconfigure). Add
+several widgets for different cities — each remembers its own.
 
 ### 🍏 iOS — Scriptable
 
@@ -116,7 +116,12 @@ have to place a Scriptable **widget** and point it at that script:
    `Newcastle` (leave blank for **London**).
 8. Tap anywhere outside to finish — the times appear.
 
-> Repeat with a different **Parameter** to show several cities side by side.
+**To set / change the city (two ways):**
+> - **Tap the widget** (or run the script in the app) → a **“choose city”** menu pops
+>   up. Pick one; the widget updates on its next refresh. Easiest — no typing.
+> - **Or** set the widget’s **Parameter** (Edit Widget → Parameter = `Glasgow`). A
+>   Parameter, if set, always wins for that widget — handy for several cities side by side.
+>
 > Small = all five compact; Medium / Large = glyphs + a `Next · …` tag.
 > More: [`ios-scriptable/README.md`](ios-scriptable/README.md).
 

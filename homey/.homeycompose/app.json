@@ -9,6 +9,11 @@
   "description": { "en": "Display-only prayer times for UK cities on your dashboard." },
   "category": ["tools"],
   "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
   "brandColor": "#0d1b2a",
   "author": { "name": "Seyed Jafari" }
 }

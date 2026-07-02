@@ -27,13 +27,15 @@ class ConfigActivity : Activity() {
         }
 
         setContentView(R.layout.config_activity)
+        val current = PrayerRepository.cityFor(this, appWidgetId)
         val list = findViewById<LinearLayout>(R.id.city_list)
         for (city in PrayerCore.CITIES) {
+            val selected = city == current
             val b = Button(this).apply {
-                text = city
+                text = if (selected) "✓  $city" else city
                 isAllCaps = false
-                setTextColor(Color.parseColor("#e8eef5"))
-                setBackgroundColor(Color.parseColor("#1b263b"))
+                setTextColor(Color.parseColor(if (selected) "#0d1b2a" else "#e8eef5"))
+                setBackgroundColor(Color.parseColor(if (selected) "#e0b054" else "#1b263b"))
                 val lp = LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,
                 )

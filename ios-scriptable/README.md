@@ -34,10 +34,17 @@ Copy the **code** (the file's *contents*, ~230 lines — not the file itself):
    (small / medium / large) → **Add Widget**.
 2. Long-press the new widget → **Edit Widget**.
 3. **Script** → choose **Prayer Times**.
-4. **Parameter** → type a city: `London`, `Cardiff`, `Glasgow`, `Manchester`, or
-   `Newcastle`. Leave blank for **London**.
+4. (Optional) **Parameter** → a city — see below. Leave blank to use the in-app picker.
 
-Repeat with different parameters to place several cities side by side.
+## Choosing the city
+
+Two ways:
+
+- **Tap the widget** (or run the script inside Scriptable) → a **“choose city”** menu
+  appears. Pick one; it's saved and the widget updates on its next refresh. Easiest.
+- **Or** set the widget’s **Parameter** to `London`, `Cardiff`, `Glasgow`, `Manchester`,
+  or `Newcastle`. A Parameter, if set, **always wins** for that widget — use it to place
+  several cities side by side (blank = use the picker’s choice, default London).
 
 ## Sizes
 

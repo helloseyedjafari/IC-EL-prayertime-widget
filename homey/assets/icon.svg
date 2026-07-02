@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" width="960" height="960">
+  <!-- Monochrome crescent + star on a transparent full canvas, per Homey icon
+       guidelines (Homey tints it; no gradients/fills/background). -->
+  <path fill="#000000" fill-rule="evenodd"
+        d="M170,490 a330,330 0 1 0 660,0 a330,330 0 1 0 -660,0 Z
+           M248,462 a280,280 0 1 0 560,0 a280,280 0 1 0 -560,0 Z"/>
+  <polygon fill="#000000"
+           points="655,255 673.2,309.9 731.1,310.3 684.5,344.6 702,399.7 655,366 608,399.7 625.5,344.6 578.9,310.3 636.8,309.9"/>
+</svg>

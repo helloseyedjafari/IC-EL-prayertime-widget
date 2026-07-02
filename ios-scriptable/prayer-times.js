@@ -117,6 +117,27 @@ function readCache(city) {
 function writeCache(city, data) {
   try { fm.writeString(cachePath(city), JSON.stringify(data)); } catch (e) { /* ignore */ }
 }
+
+// ---- selected city (set via the in-app picker; used when no widget Parameter) ----
+const savedCityPath = fm.joinPath(cacheDir, "selected-city.json");
+function readSavedCity() {
+  try {
+    const c = JSON.parse(fm.readString(savedCityPath));
+    return CITIES.includes(c.city) ? c.city : null;
+  } catch (e) { return null; }
+}
+function saveSelectedCity(city) {
+  try { fm.writeString(savedCityPath, JSON.stringify({ city })); } catch (e) { /* ignore */ }
+}
+async function pickCity(current) {
+  const a = new Alert();
+  a.title = "Prayer Times — choose city";
+  a.message = "Currently showing: " + current;
+  for (const c of CITIES) a.addAction(c === current ? "✓  " + c : c);
+  a.addCancelAction("Cancel");
+  const idx = await a.presentSheet();
+  return idx >= 0 ? CITIES[idx] : null;
+}
 async function loadData(city) {
   try {
     const d = await getPrayerTimes(city, fetchText);
@@ -221,22 +242,30 @@ function buildError() {
 
 // ---- entry ----
 (async () => {
-  const city = (args.widgetParameter && String(args.widgetParameter).trim()) || DEFAULT_CITY;
+  // City precedence: per-widget Parameter (if set) > in-app picker choice > default.
+  const paramCity = args.widgetParameter && String(args.widgetParameter).trim();
+  let city = paramCity || readSavedCity() || DEFAULT_CITY;
   const family = config.widgetFamily || "medium";
-  let widget;
-  try {
-    widget = buildWidget(await loadData(city), family);
-  } catch (e) {
-    widget = buildError();
-  }
+
+  // Running inside a widget → just render it.
   if (config.runsInWidget) {
+    let widget;
+    try { widget = buildWidget(await loadData(city), family); }
+    catch (e) { widget = buildError(); }
     Script.setWidget(widget);
-  } else if (family === "small") {
-    await widget.presentSmall();
-  } else if (family === "large") {
-    await widget.presentLarge();
-  } else {
-    await widget.presentMedium();
+    Script.complete();
+    return;
   }
+
+  // Run in the app (or tapped the widget) → let the user choose a city, save it,
+  // then show a preview. A widget Parameter, if set, still overrides this per widget.
+  const chosen = await pickCity(city);
+  if (chosen) { saveSelectedCity(chosen); city = chosen; }
+
+  let widget;
+  try { widget = buildWidget(await loadData(city), family === "small" ? "medium" : family); }
+  catch (e) { widget = buildError(); }
+  if (family === "large") await widget.presentLarge();
+  else await widget.presentMedium();
   Script.complete();
 })();
