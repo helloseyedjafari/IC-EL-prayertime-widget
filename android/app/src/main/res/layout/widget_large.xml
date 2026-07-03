@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Single responsive layout. Rows use layout_weight so they fill the widget's
+     height (no dead margin when it grows), and PrayerWidgetProvider scales every
+     font to the widget's actual size so text stays readable and never clips. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card"
     android:layout_width="match_parent"
@@ -7,12 +10,12 @@
     android:background="@drawable/widget_bg"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    android:paddingTop="12dp"
-    android:paddingBottom="12dp">
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
     <!-- Header: moon in the glyph column, city in the name column -->
-    <LinearLayout style="@style/WidgetLine" android:paddingBottom="6dp">
-        <TextView style="@style/GlyphCol" android:text="🌙" android:textSize="14sp" />
+    <LinearLayout style="@style/WidgetLine">
+        <TextView android:id="@+id/glyph_hdr" style="@style/GlyphCol" android:text="🌙" />
         <TextView android:id="@+id/city" style="@style/CityCol" android:text="—" />
         <TextView
             android:id="@+id/stale"
@@ -24,33 +27,33 @@
             android:visibility="gone" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_dawn" style="@style/WidgetLine">
-        <TextView style="@style/GlyphCol" android:text="☀" />
-        <TextView style="@style/NameCol" android:text="Dawn" />
+    <LinearLayout android:id="@+id/row_dawn" style="@style/WidgetRow">
+        <TextView android:id="@+id/glyph_dawn" style="@style/GlyphCol" android:text="☀" />
+        <TextView android:id="@+id/name_dawn" style="@style/NameCol" android:text="Dawn" />
         <TextView android:id="@+id/dawn_time" style="@style/TimeCol" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_sunrise" style="@style/WidgetLine">
-        <TextView style="@style/GlyphCol" android:text="◐" />
-        <TextView style="@style/NameCol" android:text="Sunrise" />
+    <LinearLayout android:id="@+id/row_sunrise" style="@style/WidgetRow">
+        <TextView android:id="@+id/glyph_sunrise" style="@style/GlyphCol" android:text="◐" />
+        <TextView android:id="@+id/name_sunrise" style="@style/NameCol" android:text="Sunrise" />
         <TextView android:id="@+id/sunrise_time" style="@style/TimeCol" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_noon" style="@style/WidgetLine">
-        <TextView style="@style/GlyphCol" android:text="☉" />
-        <TextView style="@style/NameCol" android:text="Noon" />
+    <LinearLayout android:id="@+id/row_noon" style="@style/WidgetRow">
+        <TextView android:id="@+id/glyph_noon" style="@style/GlyphCol" android:text="☉" />
+        <TextView android:id="@+id/name_noon" style="@style/NameCol" android:text="Noon" />
         <TextView android:id="@+id/noon_time" style="@style/TimeCol" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_maghrib" style="@style/WidgetLine">
-        <TextView style="@style/GlyphCol" android:text="☾" />
-        <TextView style="@style/NameCol" android:text="Maghrib" />
+    <LinearLayout android:id="@+id/row_maghrib" style="@style/WidgetRow">
+        <TextView android:id="@+id/glyph_maghrib" style="@style/GlyphCol" android:text="☾" />
+        <TextView android:id="@+id/name_maghrib" style="@style/NameCol" android:text="Maghrib" />
         <TextView android:id="@+id/maghrib_time" style="@style/TimeCol" />
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/row_midnight" style="@style/WidgetLine">
-        <TextView style="@style/GlyphCol" android:text="☾" />
-        <TextView style="@style/NameCol" android:text="Midnight" />
+    <LinearLayout android:id="@+id/row_midnight" style="@style/WidgetRow">
+        <TextView android:id="@+id/glyph_midnight" style="@style/GlyphCol" android:text="☾" />
+        <TextView android:id="@+id/name_midnight" style="@style/NameCol" android:text="Midnight" />
         <TextView android:id="@+id/midnight_time" style="@style/TimeCol" />
     </LinearLayout>
 
@@ -59,8 +62,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="6dp"
+        android:paddingTop="4dp"
         android:text=""
         android:textColor="@color/gold_dim"
-        android:textSize="11sp" />
+        android:textSize="11sp"
+        android:maxLines="1" />
 </LinearLayout>

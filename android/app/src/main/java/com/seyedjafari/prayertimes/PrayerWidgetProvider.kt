@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
 import kotlinx.coroutines.CoroutineScope
@@ -57,20 +58,87 @@ class PrayerWidgetProvider : AppWidgetProvider() {
         fun renderBlocking(context: Context, mgr: AppWidgetManager, id: Int) {
             val city = PrayerRepository.cityFor(context, id)
             val options = mgr.getAppWidgetOptions(id)
-            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 220)
-            val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 220)
-            // 2x2 / 2x3 / 3x2 (~110-170dp) use the compact layout; 3x3+ uses the roomy one.
-            val layout = if (minWidth < 175 || minHeight < 175) R.layout.widget_small else R.layout.widget_large
+            // Guaranteed content box (dp): the size the widget is at least this big
+            // in either orientation, so sizing to it never clips after a rotate.
+            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 150)
+            val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 150)
 
             val data = runCatching { PrayerRepository.load(context, city) }.getOrNull()
-            val views = RemoteViews(context.packageName, layout)
+            val views = buildViews(context, data, minWidth, minHeight)
+            views.setOnClickPendingIntent(R.id.card, cityPickerIntent(context, id))
+            mgr.updateAppWidget(id, views)
+        }
+
+        /** Inflate + size + fill the widget RemoteViews for a given content box (dp). */
+        private fun buildViews(
+            context: Context, data: PrayerTimes?, minWidthDp: Int, minHeightDp: Int,
+        ): RemoteViews {
+            val views = RemoteViews(context.packageName, R.layout.widget_large)
+            applySizing(views, minWidthDp, minHeightDp)
             if (data != null) {
                 bind(views, data)
             } else {
                 views.setTextViewText(R.id.city, context.getString(R.string.unavailable))
             }
-            views.setOnClickPendingIntent(R.id.card, cityPickerIntent(context, id))
-            mgr.updateAppWidget(id, views)
+            return views
+        }
+
+        private val GLYPH_IDS = intArrayOf(
+            R.id.glyph_hdr, R.id.glyph_dawn, R.id.glyph_sunrise,
+            R.id.glyph_noon, R.id.glyph_maghrib, R.id.glyph_midnight,
+        )
+        private val NAME_IDS = intArrayOf(
+            R.id.name_dawn, R.id.name_sunrise, R.id.name_noon,
+            R.id.name_maghrib, R.id.name_midnight,
+        )
+        private val TIME_IDS = intArrayOf(
+            R.id.dawn_time, R.id.sunrise_time, R.id.noon_time,
+            R.id.maghrib_time, R.id.midnight_time,
+        )
+
+        /**
+         * Scale every font to the widget's current size so text grows with the
+         * widget (instead of leaving dead margin) and always fits (instead of
+         * clipping when small). Sizes are in DIP, not SP, so the fit math holds
+         * regardless of the user's system font-scale setting. Called on every
+         * render, including onAppWidgetOptionsChanged (i.e. on resize).
+         */
+        private fun applySizing(v: RemoteViews, minWidthDp: Int, minHeightDp: Int) {
+            val usableW = (minWidthDp - 20).coerceAtLeast(50)
+            val usableH = (minHeightDp - 16).coerceAtLeast(50)
+
+            // Drop the glyph column when too narrow to fit "Midnight" + time beside it.
+            val showGlyph = usableW >= 155
+            val glyphColW = if (showGlyph) 30 else 0
+            // Drop the "Next" label when too short — the highlighted row already marks
+            // it, so the height goes to making the five times bigger instead.
+            val showNext = usableH >= 118
+
+            // Vertical fit: header (~1.55) + 5 weighted rows + optional Next (~1.15),
+            // each unit ≈ font * 1.28 line height (includeFontPadding is off).
+            val vUnits = 1.55f + 5f + if (showNext) 1.15f else 0f
+            val fromHeight = (usableH - 4f) / vUnits / 1.28f
+            // Horizontal fit: longest row is "Midnight" (name) + "12:34" (bold time).
+            // Denominator = name chars·width + time chars·width + a slack term that
+            // leaves a small name↔time gap, so text shrinks to fit rather than clipping.
+            val textBudget = (usableW - glyphColW - 6).coerceAtLeast(30)
+            val fromWidth = textBudget / 7.4f
+
+            val base = minOf(fromHeight, fromWidth).coerceIn(9f, 26f)
+            val nameSize = base * 0.95f
+            val citySize = base * 0.95f
+            val glyphSize = base * 0.95f
+            val nextSize = (base * 0.82f).coerceAtLeast(9f)
+
+            for (gid in GLYPH_IDS) {
+                v.setViewVisibility(gid, if (showGlyph) View.VISIBLE else View.GONE)
+                v.setTextViewTextSize(gid, TypedValue.COMPLEX_UNIT_DIP, glyphSize)
+            }
+            for (nid in NAME_IDS) v.setTextViewTextSize(nid, TypedValue.COMPLEX_UNIT_DIP, nameSize)
+            for (tid in TIME_IDS) v.setTextViewTextSize(tid, TypedValue.COMPLEX_UNIT_DIP, base)
+            v.setTextViewTextSize(R.id.city, TypedValue.COMPLEX_UNIT_DIP, citySize)
+            v.setViewVisibility(R.id.next_label, if (showNext) View.VISIBLE else View.GONE)
+            v.setTextViewTextSize(R.id.next_label, TypedValue.COMPLEX_UNIT_DIP, nextSize)
         }
 
         /** Re-render every placed widget (used by the periodic worker). Blocking. */
